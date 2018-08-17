@@ -1,0 +1,16 @@
+The variance (σ2) is a measure of how far each value in the data set is from the mean.
+The standard deviation (σ) is simply the (positive) square root of the variance.
+
+CODE
+import numpy as np
+import matplotlib.pyplot as plt 
+incomes = np.random.normal(100.0, 50.0, 10000) # (center, SD=50, sample quantity)
+plt.hist(incomes, 50)#(quantity of barcel)
+plt.show()
+income.std() #standard diviation 
+income.var() #variance
+
+
+
+LINK
+https://www.sciencebuddies.org/science-fair-projects/science-fair/variance-and-standard-deviation
