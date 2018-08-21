@@ -1,0 +1,108 @@
+Concepts
+A controlled experiment, usually in the context of a website
+Test the performance of some changes to your website( the variant group) and measure conversion relative to your unchanged site ( the control group).
+
+Often be used for:
+design changes
+UI flow
+Algorithmic changes
+Pricing changes
+any thing else
+
+Measure conversion
+  order amounts
+  profit
+  Ad clicks
+  Order quantity
+  Revenue
+But attributing actions downstream from your change can be hard, especially if you're running more than one experiment.
+Variance is our enemy
+  Common Mistakes
+    Run a test for some small period of time that results in a few purches to analyze
+    You take the mean order amount from A and B, and declare victory or defeat
+    But, there's so muvh random variation in order amounts to begin with, that your results was just based on chance.
+    You then fool yourself into thinking some change to your website, which could actually be harmful, has made tons of money
+    Sometimes you need to also look at conversion metrics with less variance
+    Order quantities VS. order dollar amount, for example
+T-tests and P-values
+  T-Statistic
+    A measure of the difference between the two sets expressed in units of standard error
+    The size of the difference relative to the variance in the data
+    A high t value means there's probably a real difference between the two sets
+    Assumes a normal distribution of behavior
+      This is a good assumption if you're measuring revenues as conversion
+      Fisher's exact test for clickthrough rates, E-test for transactions per user, and Chi-squared test for product quantities purchased.
+   P-Value
+    Think of it as the probability of A and B satisfing the "null hypothesis"
+    So, a low P-Value implies significance
+    It is the probability of an abservation lying at an extreme t-value assuming the null hypothesis (high T and low P is a good result)
+   Using P-values
+    Chose some threhold for "significance" before your experiment. 1%? 5%?
+    
+Code in Python
+
+import numpy as np
+from scipy import stats
+# A is test group(treatment) , B is control group
+A = np.random.normal(25, 5, 10000)
+B = np.random.normal(26, 5, 10000)
+
+stats.ttest_ind(A, B)
+
+# The test group will be accepted till P-value should be under 1%, 5%. 
+
+B = np.random.normal(25, 5, 10000)
+
+stats.ttest_ind(A, B)
+
+
+B = np.random.normal(26, 4, 10000)
+
+stats.ttest_ind(A, B)
+
+# This means the more population you take, more reallity output you will get.
+A = np.random.normal(26, 5, 10000000)
+B = np.random.normal(26, 5, 10000000)
+
+stats.ttest_ind(A, B)
+
+stats.ttest_ind(A, A)
+
+When to done with AB test
+  Achieved significance (positive or negative)
+  No longer observe meaningful trends in your p-value
+  Reach some pre-establied upper bound on time
+  
+AB Test Gatchas
+  Correlation does not imply causation
+    Even a low p-value score on a well-designed experiment does not imply causation!
+      It could still be random chance
+      Other factors could be at play
+      It's your duty to ensure business owners understand this
+    1 Novelty Effects
+      Changes to a website will catch the attention of previous users who are used to the way it used to be. They might click on something
+      simply because it is new. But, this attention won't last forever.
+      It is good idea to re-run experiments much later and validate their impact. Often the "old" website will outperform the "new" one after awhile,
+      simply because it is a change.
+    2 Seasonal Effects
+      An experiment run over a short period of time may only be that period of time.
+        example: comsumer behavior near Christmas, summer holidays
+    3 Selection Bias
+      Sometimes your randon selection of customer for AB test is not really random.
+        For example: assignment is based on customer ID, but low ID are older registed guests.
+        Run a AA test first.
+        Audit segment assignment algotithms.
+     4 Data pollution
+       Are robots (both self-identified and malicious) affecting your experiment?
+        It is good reason to measure conversion based on something that requires spending real money
+       Outliers can skew the result
+
+
+
+
+
+
+    
+    
+    
+      
