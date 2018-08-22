@@ -1,0 +1,16 @@
+autodiff
+  We need the first partial derivatives of all the inputs, reverse-mode autodiff to the rescue. (Tensorflow)
+Softmax
+  Be used for classification
+    Given a score for each class
+    Prodece a probability of each class
+    The highest probability is the "answer"
+Grandient decent is an algorithm for minimizing error over multiple steps
+Autodiff is a calculus trick for finding the gradients in gradient descent
+Softmax is a function for choosing the most probable classdification given several input values
+
+LTU Linear Threshold Unit (LTU)
+
+Perceptron
+  A layer of LTUs
+  A perceptron can learn by reinforcing weights that laed to correct behavior during training
