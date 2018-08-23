@@ -14,3 +14,9 @@ LTU Linear Threshold Unit (LTU)
 Perceptron
   A layer of LTUs
   A perceptron can learn by reinforcing weights that laed to correct behavior during training
+
+Backpropagation
+  Gradient Descent using reverse-mode autodiff. Compute the output error, Compute how much neuron in the previous hidden layer contributed
+  Back-propagete that error in a reverse pass. Tweak weights to reduce the error using gradient descent.
+  
+Activation functions (aka rectifier)
